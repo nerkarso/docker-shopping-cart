@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= appTitle %></title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+        zoom: 1.5;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1><%= appTitle %></h1>
+      <form action="items" method="POST">
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter a new item"
+          autofocus
+          required
+        />
+        <button type="submit">Add to Cart</button>
+      </form>
+      <% if (items.length) { %>
+      <ol>
+        <% items.forEach(({_id, name}) => { %>
+        <li><%= name %><a href="items/<%= _id %>/delete">&times;</a></li>
+        <% }); %>
+      </ol>
+      <% } else { %>
+      <h4>🛒 Your cart is empty.</h4>
+      <% } %>
+    </main>
+  </body>
+</html>
